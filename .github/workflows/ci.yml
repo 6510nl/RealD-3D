@@ -1,25 +1,32 @@
-# This is a basic workflow to help you get started with Actions
-
+# Name of the workflow
 name: CI
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
+  # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ "main" ]
+    branches: 
+      - main
+    paths:
+      - sources/**
   pull_request:
-    branches: [ "main" ]
+    branches: 
+      - main
+    paths:
+      - sources/**
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+
   # This workflow contains a single job called "build"
   build:
+  
     # The type of runner that the job will run on
-    runs-on: [self-hosted, 6510nl]
-
+    runs-on: [self-hosted,6510nl]
+    
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     
@@ -89,9 +96,7 @@ jobs:
       # Cross-compile the source file to a binairy .prg file using KickAss
       # The source is written in the MOS 65xx architecture and using Java Script like functions and macros
       - name: Compile source file to binary .prg file
-        run: |
-          java -jar $RUNNER_TOOL_CACHE/KickAss.jar -showmem $GITHUB_WORKSPACE/${{ steps.dotenv.outputs.c64_source_root }}/${{ steps.dotenv.outputs.c64_source_file }}-left.asm
-          java -jar $RUNNER_TOOL_CACHE/KickAss.jar -showmem $GITHUB_WORKSPACE/${{ steps.dotenv.outputs.c64_source_root }}/${{ steps.dotenv.outputs.c64_source_file }}-right.asm
+        run: java -jar $RUNNER_TOOL_CACHE/KickAss.jar -showmem $GITHUB_WORKSPACE/${{ steps.dotenv.outputs.c64_source_root }}/${{ steps.dotenv.outputs.c64_source_file }}-left.asm
   
       # Check if the 1541u2.pl Perl script exists in de ~/actions-runner/_work/_tool directory
       - name: Check 1541u2.pl existence
@@ -116,89 +121,7 @@ jobs:
         run: cp remote-repo/markusC64/1541u2.pl $RUNNER_TOOL_CACHE
           
       # Deploy the assembled .prg binary to the Ultimate device using 1541u2.pl
-      # The perl script sends raw commands over TCP to the socket of the 1541Ulimate2(+) cartridge and/or the Ultimate64.
+      # The perl script sends raw commands over TCP to the socket of the 1541Ulimate2(+) cartridge and/or the Ultimate64. 
       - name: Deploy .PRG to Ultimate devices
         continue-on-error: true
-        run: |
-          perl $RUNNER_TOOL_CACHE/1541u2.pl ${{ steps.dotenv.outputs.c64_deployment_host00 }} -c run:$GITHUB_WORKSPACE/${{ steps.dotenv.outputs.c64_source_root }}/${{ steps.dotenv.outputs.c64_destination_file }}-left.prg
-          perl $RUNNER_TOOL_CACHE/1541u2.pl ${{ steps.dotenv.outputs.c64_deployment_host00 }} -c run:$GITHUB_WORKSPACE/${{ steps.dotenv.outputs.c64_source_root }}/${{ steps.dotenv.outputs.c64_destination_file }}-right.prg
-        with:
-          files: ../../_tool/KickAss.jar
-
-      # If the KickAss.jar does not exists in de ~/actions-runner/_work/_tool directory
-      # Check if the KickAssembler.zip exist in that same folder
-      # Same here with the $RUNNER_TOOL_CACHE variable
-      - name: Check if KickAssembler.zip exists
-        if: steps.check_kickass_jar.outputs.files_exists == 'false'
-        id: check_kickassembler_zip
-        uses: andstor/file-existence-action@v1
-        with:
-          files: ../../_tool/KickAssembler.zip
-
-      # If the KickAssembler.zip does not exist, download it from the website and extract KickAss.jar to the $RUNNER_TOOL_CACHE.
-      # Here the variable is resolved correctly.
-      - name: Download and extract KickAssembler.zip
-        if: steps.check_kickassembler_zip.outputs.files_exists == 'false'
-        run: |
-          wget http://theweb.dk/KickAssembler/KickAssembler.zip --user-agent=web -O $RUNNER_TOOL_CACHE/KickAssembler.zip
-          unzip $RUNNER_TOOL_CACHE/KickAssembler.zip KickAss.jar -d $RUNNER_TOOL_CACHE
-
-      # If the KickAssembler.zip does exist, extract only the KickAss.jar to the $RUNNER_TOOL_CACHE 
-      - name: Extract KickAssembler.zip
-        if: steps.check_kickassembler_zip.outputs.files_exists == 'true'
-        run: unzip $RUNNER_TOOL_CACHE/KickAssembler.zip KickAss.jar -d $RUNNER_TOOL_CACHE
-
-      # Check if Java JRE is installed using Debian package tool
-      # When using apt or apt-get the determination of installation is prone to misinterpretation 
-      - name: Check for package using dpkg
-        uses: mathiasvr/command-output@v1
-        continue-on-error: true
-        id: cmd
-        with:
-          run: dpkg -l openjdk-11-jre
-
-      # When the Debian package tool returns no errors (this check can be made more robust) just print "Found openjdk-11-jre" to the console
-      - run: |
-          echo Found openjdk-11-jre
-        if: ${{ steps.cmd.outputs.stdout }}
-
-      # When the Debian package tool return an error it means that openjdk-11-jre isn't installed yet
-      # Install the openjdk-11-jre using the apt tool
-      - run: | 
-          echo Install openjdk-11-jre
-          sudo apt --yes install openjdk-11-jre
-        if: ${{ steps.cmd.outputs.stderr }}
-       
-      # Cross-compile the source file to a binairy .prg file using KickAss
-      # The source is written in the MOS 65xx architecture and using Java Script like functions and macros
-      - name: Compile source file to binary .prg file
-        run: |
-          java -jar $RUNNER_TOOL_CACHE/KickAss.jar -showmem $GITHUB_WORKSPACE/${{ steps.dotenv.outputs.c64_source_root }}/${{ steps.dotenv.outputs.c64_source_file }}-left.asm
-          java -jar $RUNNER_TOOL_CACHE/KickAss.jar -showmem $GITHUB_WORKSPACE/${{ steps.dotenv.outputs.c64_source_root }}/${{ steps.dotenv.outputs.c64_source_file }}-right.asm
-  
-      # Check if the 1541u2.pl Perl script exists in de ~/actions-runner/_work/_tool directory
-      - name: Check 1541u2.pl existence
-        id: check_1541u2_pl
-        uses: andstor/file-existence-action@v1
-        with:
-          files: ../../_tool/1541u2.pl
-
-      # When the script isn't cached yet, checkout repository: '1541ultimate2' branch: 'tools' of MarkusC64.
-      - name: Checkout tools repo
-        if: steps.check_1541u2_pl.outputs.files_exists == 'false'
-        uses: actions/checkout@v2
-        with:
-          repository: markusC64/1541ultimate2
-          ref: tools
-          path: remote-repo/markusC64
-          
-      # When the '1541 Ultimate II Remote Tool' script isn't cached, need to check again for this action (can this be done smarter?)
-      # Copy the 1541u2.pl script to cache folder.
-      - name: Copy 1541u2.pl to $RUNNER_TOOL_CACHE
-        if: steps.check_1541u2_pl.outputs.files_exists == 'false'
-        run: cp remote-repo/markusC64/1541u2.pl $RUNNER_TOOL_CACHE
-          
-      # Deploy the assembled .prg binary to the Ultimate device using 1541u2.pl
-      # The perl script sends raw commands over TCP to the socket of the 1541Ulimate2(+) cartridge and/or the Ultimate64.
-      - name: Deploy .PRG to Ultimate devices
-        continue-on-error: true
+        run: perl $RUNNER_TOOL_CACHE/1541u2.pl ${{ steps.dotenv.outputs.c64_deployment_host00 }} -c run:$GITHUB_WORKSPACE/${{ steps.dotenv.outputs.c64_source_root }}/${{ steps.dotenv.outputs.c64_destination_file }}-left.asm
