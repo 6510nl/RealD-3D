@@ -59,7 +59,7 @@ jobs:
       # Install the openjdk-11-jre using the apt tool
       - run: | 
           echo Install unzip
-          sudo apt --yes install unzip
+          apt --yes install unzip
         if: ${{ steps.check_unzip.outputs.stderr }}
 
       # Check if the KickAss.jar exists in de ~/actions-runner/_work/_tool directory
