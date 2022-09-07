@@ -39,7 +39,7 @@ jobs:
         id: dotenv
         uses: falti/dotenv-action@v0.2.7
         with:
-          path: source/variables.env
+          path: sources/variables.env
           
       # Check if the KickAss.jar exists in de ~/actions-runner/_work/_tool directory
       # Strangely enough the $RUNNER_TOOL_CACHE variable didn't work wit this GitHub Actions marketplace item
