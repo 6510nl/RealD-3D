@@ -220,7 +220,7 @@ irq:
 !:	dex
 	bne !-
 	nop
-	lda #%00011000
+	lda #%00011011
 	sta $d016
 	lda #%00111011
 	sta $d011
