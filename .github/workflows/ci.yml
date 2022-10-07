@@ -148,6 +148,7 @@ jobs:
       - name: Deploy .PRG to Ultimate devices
         continue-on-error: true
         run: |
-          perl $RUNNER_TOOL_CACHE/1541u2.pl ${{ steps.dotenv.outputs.c64_deployment_host00 }} -c run:$GITHUB_WORKSPACE/${{ steps.dotenv.outputs.c64_source_root }}/${{ steps.dotenv.outputs.c64_filename }}-left.prg
-          sleep 0.1
           perl $RUNNER_TOOL_CACHE/1541u2.pl ${{ steps.dotenv.outputs.c64_deployment_host01 }} -c run:$GITHUB_WORKSPACE/${{ steps.dotenv.outputs.c64_source_root }}/${{ steps.dotenv.outputs.c64_filename }}-right.prg
+          sleep 0.05
+          perl $RUNNER_TOOL_CACHE/1541u2.pl ${{ steps.dotenv.outputs.c64_deployment_host00 }} -c run:$GITHUB_WORKSPACE/${{ steps.dotenv.outputs.c64_source_root }}/${{ steps.dotenv.outputs.c64_filename }}-left.prg
+          
