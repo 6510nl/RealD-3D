@@ -459,7 +459,7 @@ SpriteSwing1:
 	lda SinusTable3,x
 	and #$07
 	clc
-	adc #$31
+	adc #$38
 	sta bg+1
 
 	lda D010Table,x
