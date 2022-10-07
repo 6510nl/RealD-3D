@@ -223,7 +223,7 @@ irq:
 	lda #%00011000
 bg:	and #$00
 	sta $d016
-	lda #%00111011
+	lda #%00111000
 	sta $d011
 	lda #$0a
 	sta $d021
@@ -457,6 +457,9 @@ SpriteSwing1:
 	sta $d00e
 	
 	lda SinusTable3,x
+	and #$07
+	clc
+	adc #$31
 	sta bg+1
 
 	lda D010Table,x
