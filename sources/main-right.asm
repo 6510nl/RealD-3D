@@ -733,7 +733,7 @@ SinusTable3:
 	.fill 256, 8 * sin(toRadians(i*360/256)) // Generates a sine curve
 //-----------------------------------------------------------
 
-.pc	=	$7200	"D010Table"
+.pc	=	$7300	"D010Table"
 
 D010Table:
 
