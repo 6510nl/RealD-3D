@@ -221,9 +221,8 @@ irq:
 	bne !-
 	nop
 	lda #%00011000
-bg:	and #$00
 	sta $d016
-	lda #%00111000
+	lda #%00111011
 	sta $d011
 	lda #$0a
 	sta $d021
@@ -455,13 +454,6 @@ SpriteSwing1:
 	clc
 	adc #$18
 	sta $d00e
-	
-	lda SinusTable3,x
-	and #$07
-	clc
-	adc #$38
-	sta bg+1
-
 	lda D010Table,x
 	sta $d010
 
@@ -730,13 +722,6 @@ SinusTable2:
 //-----------------------------------------------------------
 
 .pc	=	$7200	"D010Table"
-
-SinusTable3:
-
-	.fill 256, 8 * sin(toRadians(i*360/256)) // Generates a sine curve
-//-----------------------------------------------------------
-
-.pc	=	$7300	"D010Table"
 
 D010Table:
 
