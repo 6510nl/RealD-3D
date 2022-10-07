@@ -220,7 +220,8 @@ irq:
 !:	dex
 	bne !-
 	nop
-	lda #%00011011
+	lda #%00011000
+bg:	and #$00
 	sta $d016
 	lda #%00111011
 	sta $d011
@@ -454,6 +455,10 @@ SpriteSwing1:
 	clc
 	adc #$18
 	sta $d00e
+	
+	lda SinusTable3,x
+	sta bg+1
+
 	lda D010Table,x
 	sta $d010
 
@@ -719,6 +724,13 @@ SinusTable:
 SinusTable2:
 
 	.fill 256, 16 * sin(toRadians(i*360/256)) // Generates a sine curve
+//-----------------------------------------------------------
+
+.pc	=	$7200	"D010Table"
+
+SinusTable3:
+
+	.fill 256, 8 * sin(toRadians(i*360/256)) // Generates a sine curve
 //-----------------------------------------------------------
 
 .pc	=	$7200	"D010Table"
