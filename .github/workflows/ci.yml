@@ -118,8 +118,8 @@ jobs:
       # The source is written in the MOS 65xx architecture and using Java Script like functions and macros
       - name: Compile source file to binary .prg file
         run: |
-          java -jar $RUNNER_TOOL_CACHE/KickAss.jar -showmem $GITHUB_WORKSPACE/${{ steps.dotenv.outputs.c64_source_root }}/${{ steps.dotenv.outputs.c64_filename }}-right.asm
           java -jar $RUNNER_TOOL_CACHE/KickAss.jar -showmem $GITHUB_WORKSPACE/${{ steps.dotenv.outputs.c64_source_root }}/${{ steps.dotenv.outputs.c64_filename }}-left.asm
+          java -jar $RUNNER_TOOL_CACHE/KickAss.jar -showmem $GITHUB_WORKSPACE/${{ steps.dotenv.outputs.c64_source_root }}/${{ steps.dotenv.outputs.c64_filename }}-right.asm
           
   
       # Check if the 1541u2.pl Perl script exists in de ~/actions-runner/_work/_tool directory
@@ -149,6 +149,6 @@ jobs:
       - name: Deploy .PRG to Ultimate devices
         continue-on-error: true
         run: |
-          perl $RUNNER_TOOL_CACHE/1541u2.pl ${{ steps.dotenv.outputs.c64_deployment_host01 }} -c run:$GITHUB_WORKSPACE/${{ steps.dotenv.outputs.c64_source_root }}/${{ steps.dotenv.outputs.c64_filename }}-right.prg
           perl $RUNNER_TOOL_CACHE/1541u2.pl ${{ steps.dotenv.outputs.c64_deployment_host00 }} -c run:$GITHUB_WORKSPACE/${{ steps.dotenv.outputs.c64_source_root }}/${{ steps.dotenv.outputs.c64_filename }}-left.prg
+          perl $RUNNER_TOOL_CACHE/1541u2.pl ${{ steps.dotenv.outputs.c64_deployment_host01 }} -c run:$GITHUB_WORKSPACE/${{ steps.dotenv.outputs.c64_source_root }}/${{ steps.dotenv.outputs.c64_filename }}-right.prg
           
