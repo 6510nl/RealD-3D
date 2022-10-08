@@ -2,7 +2,7 @@
 // Variables
 //-----------------------------------------------------------
 
-.var	music = LoadSid("./SID/Saddamskis_Killer.sid")
+.var	music = LoadSid("./SID/3D_Galax.sid")
 
 //-----------------------------------------------------------
 // Macros
@@ -346,7 +346,7 @@ offx:	.byte $60+4
 offy:	.byte $80+4
 
 //-----------------------------------------------------------
-.pc	=	$1d00	"Keep In Mind table"
+.pc	=	$3000	"Keep In Mind table"
 
 spr1:	.byte $00, $00
 s1x:	.byte $00
@@ -392,11 +392,17 @@ SinusTable:
 //-----------------------------------------------------------
 .pc	=	music.location	"SID"
 	.fill	music.size, music.getData(i)
-	.print	""
-	.print	"SID Data"
-	.print	"--------"
-	.print	"location=$"+toHexString(music.location)
-	.print	"init=$"+toHexString(music.init)
-	.print	"play=$"+toHexString(music.play)
+.print ""
+.print "SID Data"
+.print "--------"
+.print "location=$"+toHexString(music.location)
+.print "init=$"+toHexString(music.init)
+.print "play=$"+toHexString(music.play)
+.print "songs="+music.songs
+.print "startSong="+music.startSong
+.print "size=$"+toHexString(music.size)
+.print "name="+music.name
+.print "author="+music.author
+.print "copyright="+music.copyright
 
 //-----------------------------------------------------------
