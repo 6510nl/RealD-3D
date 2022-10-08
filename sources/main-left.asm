@@ -314,6 +314,16 @@ joyplay:
 	lda j2r
 	cmp #j2delay
 	beq right
+
+	lda $dc01
+	and #$10
+	beq but
+	rts
+but: 
+	lda #$60
+	sta offx
+	lda #$80
+	sta offy
 	rts
 up:
 	dec offy
