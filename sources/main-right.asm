@@ -29,74 +29,115 @@
 	lda #music.startSong-1
 	jsr music.init 
 
-	jsr plotnow
-
-	lda #$18
-	sta $d018
-
 // Setup Screen
 
-	ldx #$00
-!:	lda BitmapTXT+$0000,x
-	sta $0400+$0000,x
-	lda BitmapTXT+$0100,x
-	sta $0400+$0100,x
-	lda BitmapTXT+$0200,x
-	sta $0400+$0200,x
-	lda BitmapTXT+$0300,x
-	sta $0400+$0300,x
 	lda #$00
-	sta $0800,x
-	sta $0900,x
-	sta $0a00,x
-	sta $0b00,x
-	sta $2000,x
-	sta $2100,x
-	inx
-	bne !-
-
-// Setup Colours
-	ldx #$00
-!:	lda BitmapCOL+$0000,x
-	sta $d800+$0000,x
-	lda BitmapCOL+$0100,x
-	sta $d800+$0100,x
-	lda BitmapCOL+$0200,x
-	sta $d800+$0200,x
-	lda BitmapCOL+$0300,x
-	sta $d800+$0300,x
-	inx
-	bne !-
+	sta $d020
+	sta $d021
 
 	ldx #$00
-!:	lda #$a0
+!:	lda #$20
 	sta $0400,x
-	lda #$01
+	sta $0500,x
+	sta $0600,x
+	sta $0700,x
+	lda #$05
 	sta $d800,x
+	sta $d900,x
+	sta $da00,x
+	sta $db00,x
 	inx
-	cpx #80
 	bne !-
 
-	ldx #$00
-	// add "/" to charset at position 59
-!:	lda AddChar+0*8,x
-	sta $0c00+$08*47,x
-	lda AddChar+1*8,x
-	sta $0e00+$08*47,x
-	// add "." to charset at position 46
-	lda AddChar+2*8,x
-	sta $0c00+$08*46,x
-	lda AddChar+3*8,x
-	sta $0e00+$08*46,x
-	// add "&" to charset at position 38
-	lda AddChar+4*8,x
-	sta $0c00+$08*38,x
-	lda AddChar+5*8,x
-	sta $0e00+$08*38,x
-	inx
-	cpx #$8
-	bne !-
+.var paal1 = 5
+.var paal2 = 10
+.var paal3 = 15
 
+.var paal1 = 4
+.var paal2 = 11
+.var paal3 = 17
+
+
+	lda #$a0
+	sta $0400+paal1+(40*00)
+	sta $0400+paal1+(40*01)
+	sta $0400+paal1+(40*02)
+	sta $0400+paal1+(40*03)
+	sta $0400+paal1+(40*04)
+	sta $0400+paal1+(40*05)
+	sta $0400+paal1+(40*06)
+	sta $0400+paal1+(40*07)
+	sta $0400+paal1+(40*08)
+	sta $0400+paal1+(40*09)
+	sta $0400+paal1+(40*10)
+	sta $0400+paal1+(40*11)
+	sta $0400+paal1+(40*12)
+	sta $0400+paal1+(40*13)
+	sta $0400+paal1+(40*14)
+	sta $0400+paal1+(40*15)
+	sta $0400+paal1+(40*16)
+	sta $0400+paal1+(40*17)
+	sta $0400+paal1+(40*18)
+	sta $0400+paal1+(40*19)
+	sta $0400+paal1+(40*20)
+	sta $0400+paal1+(40*21)
+	sta $0400+paal1+(40*22)
+	sta $0400+paal1+(40*23)
+	sta $0400+paal1+(40*24)
+	
+	sta $0400+paal2+(40*00)
+	sta $0400+paal2+(40*01)
+	sta $0400+paal2+(40*02)
+	sta $0400+paal2+(40*03)
+	sta $0400+paal2+(40*04)
+	sta $0400+paal2+(40*05)
+	sta $0400+paal2+(40*06)
+	sta $0400+paal2+(40*07)
+	sta $0400+paal2+(40*08)
+	sta $0400+paal2+(40*09)
+	sta $0400+paal2+(40*10)
+	sta $0400+paal2+(40*11)
+	sta $0400+paal2+(40*12)
+	sta $0400+paal2+(40*13)
+	sta $0400+paal2+(40*14)
+	sta $0400+paal2+(40*15)
+	sta $0400+paal2+(40*16)
+	sta $0400+paal2+(40*17)
+	sta $0400+paal2+(40*18)
+	sta $0400+paal2+(40*19)
+	sta $0400+paal2+(40*20)
+	sta $0400+paal2+(40*21)
+	sta $0400+paal2+(40*22)
+	sta $0400+paal2+(40*23)
+	sta $0400+paal2+(40*24)
+
+	sta $0400+paal3+(40*00)
+	sta $0400+paal3+(40*01)
+	sta $0400+paal3+(40*02)
+	sta $0400+paal3+(40*03)
+	sta $0400+paal3+(40*04)
+	sta $0400+paal3+(40*05)
+	sta $0400+paal3+(40*06)
+	sta $0400+paal3+(40*07)
+	sta $0400+paal3+(40*08)
+	sta $0400+paal3+(40*09)
+	sta $0400+paal3+(40*10)
+	sta $0400+paal3+(40*11)
+	sta $0400+paal3+(40*12)
+	sta $0400+paal3+(40*13)
+	sta $0400+paal3+(40*14)
+	sta $0400+paal3+(40*15)
+	sta $0400+paal3+(40*16)
+	sta $0400+paal3+(40*17)
+	sta $0400+paal3+(40*18)
+	sta $0400+paal3+(40*19)
+	sta $0400+paal3+(40*20)
+	sta $0400+paal3+(40*21)
+	sta $0400+paal3+(40*22)
+	sta $0400+paal3+(40*23)
+	sta $0400+paal3+(40*24)
+	
+	
 // Enable Sprites
 	lda #$00
 	sta $d017	//	Expand y
@@ -114,29 +155,6 @@
 	sta $d02d	//	Sprite 6 color
 	sta $d02e	//	Sprite 7 color
 
-	lda #$40	//	Set X -position
-	sta $d000	//	x-pos sprite 0
-	clc
-	adc #$18
-	sta $d002	//	x-pos sprite 1
-	clc
-	adc #$18
-	sta $d004	//	x-pos sprite 2
-	clc
-	adc #$18
-	sta $d006	//	x-pos sprite 3
-	clc
-	adc #$18
-	sta $d008	//	x-pos sprite 4
-	clc
-	adc #$18
-	sta $d00a	//	x-pos sprite 5
-	clc
-	adc #$18
-	sta $d00c	//	x-pos sprite 6
-	clc
-	adc #$18
-	sta $d00e	//	x-pos sprite 7
 // Initialise IRQ
 	sei	//	disable maskable IRQs
 
@@ -153,19 +171,19 @@
 	lda #$00	//	this is how to tell at which rasterline we want the irq to be triggered
 	sta $d012                 
 
-	lda #%00111011	//	#$1b - as there are more than 256 rasterlines, the topmost bit of $d011 serves as
-	sta $d011  	//	the 8th bit for the rasterline we want our irq to be triggered.
-	           	//	here we simply set up a character screen, leaving the topmost bit 0.
+	// lda #%00111010	//	#$1b - as there are more than 256 rasterlines, the topmost bit of $d011 serves as
+	// sta $d011  	//	the 8th bit for the rasterline we want our irq to be triggered.
+	//            	//	here we simply set up a character screen, leaving the topmost bit 0.
 
-	lda #%00011000	//	Video Control Register
-	sta $d016  	//	7-6 Unused
-		//	5 	Always set to 0
-	           	//	4	Multicolor
-	           	//	3	38/40 text mode
-	           	//	2-0	Smooth scroll
-	lda #%00011000	//	VIC Memory Control Register
-	sta $d018  	//	7-4 Video Matrix Base Address
-		//	3-1 Character dot base
+	// lda #%00011000	//	Video Control Register
+	// sta $d016  	//	7-6 Unused
+	// 	//	5 	Always set to 0
+	//            	//	4	Multicolor
+	//            	//	3	38/40 text mode
+	//            	//	2-0	Smooth scroll
+	// lda #%00011000	//	VIC Memory Control Register
+	// sta $d018  	//	7-4 Video Matrix Base Address
+	// 	//	3-1 Character dot base
 	           			           	
 	lda #$35	//	we turn off the BASIC and KERNAL rom here
 	sta $01		//	the cpu now sees RAM everywhere except at $d000-$e000, where still the registers of
@@ -202,80 +220,37 @@ irq:
 	tya        	//
 	pha        	//	store register Y in stack
 
-!:	lda $d012
-	cmp #$32
-	bne	!-
-	lda #$02
-	sta $d021
-	lda #$13
-	sta $d018
-	lda KIM0
-	sta $d016
-
-!:	lda $d012
-	cmp #$42
-	bne	!-
-
 	ldx #$07
 !:	dex
 	bne !-
 	nop
-	lda #%00011000
-	sta $d016
-	lda #%00111011
-	sta $d011
-	lda #$0a
-	sta $d021
-	lda #%00011000
-	sta $d018
-
+	nop
+	nop 
 !:	lda $d012
-	cmp #$4a
+	cmp #$f2
 	bne	!-
 
-//	:SetBorderColor(3)
-	jsr SpriteSwing1
-//	:SetBorderColor(10)
-
-!:	lda $d012
-	cmp #$82
-	bne	!-
-
-//	:SetBorderColor(3)
-	jsr SpriteSwing2
-//	:SetBorderColor(10)	
-
-!:	lda $d012
-	cmp #$ba
-	bne	!-
-
-//	:SetBorderColor(3)
-	jsr SpriteSwing3
-//	:SetBorderColor(10)
-
-//	:SetBorderColor(2)
-	jsr music.play
-//	:SetBorderColor(10)
 
 !:	lda $d012
 	cmp #$fa
 	bne	!-
 
-//	:SetBorderColor(8)
 	ldx #$00
 !:	inx
 	cpx #$10
 	bne !-
 	lda #%00011011
 	sta $d011
-//	:SetBorderColor(10)
-//	:SetBorderColor(0)
-	jsr Plotter
-//	:SetBorderColor(10)
 
-//	:SetBorderColor(13)
-	jsr scroller
+	:SetBorderColor(1)
+	jsr joyplay
+	:SetBorderColor(0)
+
 	:SetBorderColor(2)
+	jsr music.play
+	:SetBorderColor(0)
+
+
 
 	lda #$ff	//	;this is the orthodox and safe way of clearing the interrupt condition of the 
 	sta $d019	//	;if you don't do this the interrupt condition will be present all the time an
@@ -297,420 +272,68 @@ irq:
 
 //-----------------------------------------------------------
 
-.var	SpriteBin1	=	$0800
-.var	SpriteBin2	=	$0a00
-.var	SpriteBin3	=	$2000 
+joyplay:
+	lda #$80
+	sta $07f8
+	lda spr1
+	sta $d000
+	lda spr1+1
+	sta $d001
 
-Plotter:
-	inc KIM7
-	lda KIM7
-	cmp #$10
-	beq plotnow
-	rts
-plotnow:
-	lda #$00
-	sta KIM7
-
-	ldx #$00
-	ldy #$00
-!:
-
-//	Sprite row 1
-//
-//	font 	= char * 8 	A=$08, B=$10, C=$18, D=$20
-//	Sprite 	= sprite + (0*64), max 7 * 64
-//
-font1up:	lda Font+16,x
-sprite1up:	sta SpriteBin1+00+0*64,y
-font1lo:	lda Font+16+$200,x 
-sprite1lo:	sta SpriteBin1+24+0*64,y
-
-//	Sprite row 2
-font2up:	lda Font+32,x
-sprite2up:	sta SpriteBin2+01+0*64,y
-font2lo:	lda Font+32+$200,x 
-sprite2lo:	sta SpriteBin2+25+0*64,y
-
-//	Sprite row 3
-font3up:	lda Font+64,x
-sprite3up:	sta SpriteBin3+02+0*64,y
-font3lo:	lda Font+64+$200,x
-sprite3lo:	sta SpriteBin3+26+0*64,y
-	
-	inx
-	iny
-	iny
-	iny
-	cpx #$08
-	bne !-
-
-	ldx KIM8
-
-	// plot font in sprite pointer
-	lda PlotText1,x
-	sta font1up+1
-	sta font1lo+1
-	lda PlotText1+1,x
-	sta font1up+2
-	clc
-	adc #$02
-	sta font1lo+2
-
-	lda PlotText2,x
-	sta font2up+1
-	sta font2lo+1
-
-	lda PlotText2+1,x
-	sta font2up+2
-	clc
-	adc #$02
-	sta font2lo+2
-
-	lda PlotText3,x
-	sta font3up+1
-	sta font3lo+1
-
-	lda PlotText3+1,x
-	sta font3up+2
-	clc
-	adc #$02
-	sta font3lo+2
-	// plot bitmap in sprite pointer
-	lda PlotPos1,x
-	sta sprite1up+1
-	clc
-	adc #24
-	sta sprite1lo+1
-	lda PlotPos1+1,x
-	sta sprite1up+2
-	sta sprite1lo+2
-
-	lda PlotPos2,x
-	sta sprite2up+1
-	clc
-	adc #24
-	sta sprite2lo+1
-	lda PlotPos2+1,x
-	sta sprite2up+2
-	sta sprite2lo+2
-
-	lda PlotPos3,x
-	sta sprite3up+1
-	clc
-	adc #24
-	sta sprite3lo+1
-	lda PlotPos3+1,x
-	sta sprite3up+2
-	sta sprite3lo+2
-
-	inc KIM8
-	inc KIM8
-
-	rts
-
-//-----------------------------------------------------------
-SpriteSwing1:
-
-	ldx #$20
-	stx $07f8	// Pointer sprite 0
-	inx
-	stx $07f9	// Pointer sprite 1
-	inx
-	stx $07fa	// Pointer sprite 2
-	inx
-	stx $07fb	// Pointer sprite 3
-	inx
-	stx $07fc	// Pointer sprite 4
-	inx
-	stx $07fd	// Pointer sprite 5
-	inx
-	stx $07fe	// Pointer sprite 6
-	inx
-	stx $07ff	// Pointer sprite 7
-
-	ldx KIM1
+	ldx s1x
+	ldy s1y
 	lda SinusTable,x
 	clc
-	adc #$58
-	sta $d000
+	adc #$40	# left #$60
+	sta spr1
+	lda SinusTable,y
 	clc
-	adc #$18
-	sta $d002
-	clc
-	adc #$18
-	sta $d004
-	clc
-	adc #$18
-	sta $d006
-	clc
-	adc #$18
-	sta $d008
-	clc
-	adc #$18
-	sta $d00a
-	clc
-	adc #$18
-	sta $d00c
-	clc
-	adc #$18
-	sta $d00e
-	lda D010Table,x
-	sta $d010
-
-	ldx KIM4
-	lda SinusTable2,x 
-	clc 
-	adc #$60
-	sta $d001
-	sta $d003
-	sta $d005
-	sta $d007
-	sta $d009
-	sta $d00b
-	sta $d00d
-	sta $d00f
-	 
-	inc KIM1
-	inc KIM4
-	inc KIM4 
+	adc #$a0	# left #$80
+	sta spr1+1
+	inc s1x
+	inc s1y
 	rts
 
-//-----------------------------------------------------------
 
-SpriteSwing2:
-
-	ldx #$28
-	stx $07f8	// Pointer sprite 0
-	inx
-	stx $07f9	// Pointer sprite 1
-	inx
-	stx $07fa	// Pointer sprite 2
-	inx
-	stx $07fb	// Pointer sprite 3
-	inx
-	stx $07fc	// Pointer sprite 4
-	inx
-	stx $07fd	// Pointer sprite 5
-	inx
-	stx $07fe	// Pointer sprite 6
-	inx
-	stx $07ff	// Pointer sprite 7
-
-	lda #%00000000
-	sta $d010
-
-	ldx KIM2
-	lda SinusTable,x
-	clc
-	adc #$58
-	sta $d000
-	clc
-	adc #$18
-	sta $d002
-	clc
-	adc #$18
-	sta $d004
-	clc
-	adc #$18
-	sta $d006
-	clc
-	adc #$18
-	sta $d008
-	clc
-	adc #$18
-	sta $d00a
-	clc
-	adc #$18
-	sta $d00c
-	clc
-	adc #$18
-	sta $d00e
-	lda D010Table,x
-	sta $d010
-
-	ldx KIM5
-	lda SinusTable2,x
-	clc 
-	adc #$9a
-	sta $d001
-	sta $d003
-	sta $d005
-	sta $d007
-	sta $d009
-	sta $d00b
-	sta $d00d
-	sta $d00f
-	 
-	inc KIM2 
-	inc KIM5
-	inc KIM5 
-	rts
-
-//-----------------------------------------------------------
-	
-SpriteSwing3:
-
-	ldx #$80
-	stx $07f8	// Pointer sprite 0
-	inx
-	stx $07f9	// Pointer sprite 1
-	inx
-	stx $07fa	// Pointer sprite 2
-	inx
-	stx $07fb	// Pointer sprite 3
-	inx
-	stx $07fc	// Pointer sprite 4
-	inx
-	stx $07fd	// Pointer sprite 5
-	inx
-	stx $07fe	// Pointer sprite 6
-	inx
-	stx $07ff	// Pointer sprite 7
-
-	lda #%00000000
-	sta $d010
-
-	ldx KIM3
-	lda SinusTable,x
-	clc
-	adc #$58
-	sta $d000
-	clc
-	adc #$18
-	sta $d002
-	clc
-	adc #$18
-	sta $d004
-	clc
-	adc #$18
-	sta $d006
-	clc
-	adc #$18
-	sta $d008
-	clc
-	adc #$18
-	sta $d00a
-	clc
-	adc #$18
-	sta $d00c
-	clc
-	adc #$18
-	sta $d00e
-	lda D010Table,x
-	sta $d010
-
-	 		ldx KIM6
-	lda SinusTable2,x
-	clc 
-	adc #$d2
-	sta $d001
-	sta $d003
-	sta $d005
-	sta $d007
-	sta $d009
-	sta $d00b
-	sta $d00d
-	sta $d00f
-	 
-	inc KIM3
-	inc KIM6 
-	inc KIM6
-	rts
-	
-//-----------------------------------------------------------
-scroller:
-
-	lda KIM0
-	cmp #$00
-	beq goslow
-	cmp #$01
-	bne add1
-	inc KIM4
-add1:
-	and #$05
-	cmp #$04
-	bne add2
-	inc KIM6
-add2:		and #$3
-	cmp #$01
-	bne add3
-	dec KIM5
-
-add3:
-	dec KIM0
-
-	rts
-goslow:
-	lda #$07
-	sta KIM0
-	
-	ldx #$00
-!:	lda $0401+00,x
-	sta $0400+00,x
-	lda $0401+40,x
-	sta $0400+40,x
-	inx
-	cpx #39
-	bne !-
-
-	ldx #$00 
-ScrollPnt:	lda MainScroll,x
-	cmp #$ff
-	beq	ResetScroll
-	clc
-	adc #$80
-	sta $0400+00+39
-	clc
-	adc #$40
-	sta $0400+40+39
-
-	lda ScrollPnt+1
-	cmp #$ff
-	bne OverFF
-	inc ScrollPnt+2
-
-OverFF:
-	inc ScrollPnt+1 
-	rts
-ResetScroll:
-	lda #<MainScroll
-	sta ScrollPnt+1
-	lda #>MainScroll
-	sta ScrollPnt+2
-	rts
 //-----------------------------------------------------------
 .pc	=	$1d00	"Keep In Mind table"
-KIM0:		.byte 	$00 	// 	Go Slow Scroller
-KIM1:		.byte	$00	//	SpriteSwing1 SinusPointer
-KIM2:		.byte	$20	//	SpriteSwing2 SinusPointer
-KIM3:		.byte	$40	//	SpriteSwing3 SinusPointer
-KIM4:		.byte	$10	//	SpriteSwing1 SinusPointer
-KIM5:		.byte	$30	//	SpriteSwing2 SinusPointer
-KIM6:		.byte	$50	//	SpriteSwing3 SinusPointer
-KIM7:		.byte	$00	//	Plotter pointer 1
-KIM8:		.byte	$00	//	Plotter indexer
+
+spr1:	.byte $00, $00
+s1x:	.byte $00
+s1y:	.byte $40
+
 //-----------------------------------------------------------
-.pc	=	$2000	"bitmap 1991 BIN"
-BitmapBIN:
-	.import c64 "./GFX/1991-2000-3FFF.PRG"
+.pc	=	$2000	"Sprite bitmap"
 
-.pc	=	$4000	"bitmap 1991 TXT"
-BitmapTXT:
-	.import c64 "./GFX/1991-0400.PRG"
+sprite1:
+	.byte %000011111,	%11111111,	%11110000
+	.byte %00111111,	%11111111,	%11111100
+	.byte %01111111,	%11111111,	%11111110
+	.byte %01111111,	%11111111,	%11111110
+	.byte %11111111,	%11111111,	%11111111
+	.byte %11111111,	%11111111,	%11111111
+	.byte %11111111,	%11111111,	%11111111
+	.byte %11111111,	%11111111,	%11111111
+	.byte %11111111,	%11111111,	%11111111
+	.byte %11111111,	%11111111,	%11111111
+	.byte %11111111,	%11111111,	%11111111
+	.byte %11111111,	%11111111,	%11111111
+	.byte %11111111,	%11111111,	%11111111
+	.byte %11111111,	%11111111,	%11111111
+	.byte %11111111,	%11111111,	%11111111
+	.byte %11111111,	%11111111,	%11111111
+	.byte %11111111,	%11111111,	%11111111
+	.byte %01111111,	%11111111,	%11111110
+	.byte %01111111,	%11111111,	%11111110
+	.byte %00111111,	%11111111,	%11111100
+	.byte %00001111,	%11111111,	%11110000
 
-.pc	=	$4400	"bitmap 1991 COL"
-BitmapCOL:
-	.import c64 "./GFX/1991-d800.PRG"
-
-.pc	=	$0c00	"Font 8x16"
-Font:
-	.import c64 "./GFX/8x16Font.prg"
 //-----------------------------------------------------------
 .pc	=	$7000	"SinusTable"
 
 SinusTable:
 
-	.fill 256, 64 * sin(toRadians(i*360/256)) // Generates a sine curve
+	.fill 256, 60 * sin(toRadians(i*360/256)) // Generates a sine curve
 
 //-----------------------------------------------------------
 
@@ -718,7 +341,7 @@ SinusTable:
 
 SinusTable2:
 
-	.fill 256, 16 * sin(toRadians(i*360/256)) // Generates a sine curve
+	.fill 256, 40 * sin(toRadians(i*360/256)) // Generates a sine curve
 //-----------------------------------------------------------
 
 .pc	=	$7200	"D010Table"
@@ -784,897 +407,3 @@ MainScroll:
 	.text	"                                                "
 
 //-----------------------------------------------------------
-
-.pc	=	$5000	"PlotText1"
-	//			"123456789012345678901234"	5 screens
-
-	//	row1	"desire jetset hk 6510.nl"	1
-	//	row2	" organiseren 1991 party "
-	//	row3	"    16 november 2013    "
-
-	//	row1	" accepting remote compo "	2
-	//	row2	"entries on an ouderwetse"
-	//	row3	" C64, Amiga 500 & 'wild'"
-
-	//	row1	"greetings and respect to"	5
-	//	row2	"  our buren outline, x, "
-	//	row3	" rewired, and datastorm "
-
-PlotText1:
-
-	.word 	$0c00 + $08 * 04 // d
-	.word 	$0c00 + $08 * 05 // e
-	.word 	$0c00 + $08 * 19 // s
-	.word 	$0c00 + $08 * 09 // i
-	.word 	$0c00 + $08 * 18 // r
-	.word 	$0c00 + $08 * 05 // e
-	.word 	$0c00 + $08 * 32 //   
-	.word 	$0c00 + $08 * 10 // j
-	.word 	$0c00 + $08 * 05 // e
-	.word 	$0c00 + $08 * 20 // t
-	.word 	$0c00 + $08 * 19 // s
-	.word 	$0c00 + $08 * 05 // e
-	.word 	$0c00 + $08 * 20 // t
-	.word 	$0c00 + $08 * 32 //   
-	.word 	$0c00 + $08 * 08 // h
-	.word 	$0c00 + $08 * 11 // k
-	.word 	$0c00 + $08 * 32 //   
-	.word 	$0c00 + $08 * 54 // 6
-	.word 	$0c00 + $08 * 53 // 5
-	.word 	$0c00 + $08 * 49 // 1
-	.word 	$0c00 + $08 * 48 // 0
-	.word 	$0c00 + $08 * 46 // .
-	.word 	$0c00 + $08 * 14 // n
-	.word 	$0c00 + $08 * 12 // l
-
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-
-	.word 	$0c00 + $08 * 32 // 
-	.word 	$0c00 + $08 * 01 // a
-	.word 	$0c00 + $08 * 03 // c
-	.word 	$0c00 + $08 * 03 // c
-	.word 	$0c00 + $08 * 05 // e
-	.word 	$0c00 + $08 * 16 // p
-	.word 	$0c00 + $08 * 20 // t
-	.word 	$0c00 + $08 * 09 // i
-	.word 	$0c00 + $08 * 14 // n
-	.word 	$0c00 + $08 * 07 // g
-	.word 	$0c00 + $08 * 32 // 
-	.word 	$0c00 + $08 * 18 // r
-	.word 	$0c00 + $08 * 05 // e
-	.word 	$0c00 + $08 * 13 // m
-	.word 	$0c00 + $08 * 15 // o
-	.word 	$0c00 + $08 * 20 // t
-	.word 	$0c00 + $08 * 05 // e
-	.word 	$0c00 + $08 * 32 // 
-	.word 	$0c00 + $08 * 03 // c
-	.word 	$0c00 + $08 * 15 // o
-	.word 	$0c00 + $08 * 13 // m
-	.word 	$0c00 + $08 * 16 // p
-	.word 	$0c00 + $08 * 15 // o
-	.word 	$0c00 + $08 * 32 //  
-
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-
-	.word 	$0c00 + $08 * 00 //
-	.word 	$0c00 + $08 * 00 //
-	.word 	$0c00 + $08 * 00 //
-	.word 	$0c00 + $08 * 00 //
-	.word 	$0c00 + $08 * 00 //
-	.word 	$0c00 + $08 * 00 //
-	.word 	$0c00 + $08 * 00 //
-            .word 	$0c00 + $08 * 00 //
-.pc	=	$5100	"PlotText2"
-
-PlotText2:
-
-	.word 	$0c00 + $08 * 32 // 
-	.word 	$0c00 + $08 * 15 // o
-	.word 	$0c00 + $08 * 18 // r
-	.word 	$0c00 + $08 * 07 // g
-	.word 	$0c00 + $08 * 01 // a
-	.word 	$0c00 + $08 * 14 // n
-	.word 	$0c00 + $08 * 09 // i
-	.word 	$0c00 + $08 * 19 // s
-	.word 	$0c00 + $08 * 05 // e
-	.word 	$0c00 + $08 * 32 // 
-	.word 	$0c00 + $08 * 49 // 1
-	.word 	$0c00 + $08 * 57 // 9
-	.word 	$0c00 + $08 * 57 // 9
-	.word 	$0c00 + $08 * 49 // 1
-	.word 	$0c00 + $08 * 16 // p
-	.word 	$0c00 + $08 * 01 // a
-	.word 	$0c00 + $08 * 18 // r
-	.word 	$0c00 + $08 * 20 // t
-	.word 	$0c00 + $08 * 25 // y
-	.word 	$0c00 + $08 * 46 // . 
-	.word 	$0c00 + $08 * 03 // c
-	.word 	$0c00 + $08 * 15 // o
-	.word 	$0c00 + $08 * 13 // m 
-	.word 	$0c00 + $08 * 32 //  
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-
-	.word 	$0c00 + $08 * 05 // e
-	.word 	$0c00 + $08 * 14 // n
-	.word 	$0c00 + $08 * 20 // t
-	.word 	$0c00 + $08 * 18 // r
-	.word 	$0c00 + $08 * 09 // i
-	.word 	$0c00 + $08 * 05 // e
-	.word 	$0c00 + $08 * 19 // s
-	.word 	$0c00 + $08 * 32 // 
-	.word 	$0c00 + $08 * 15 // o
-	.word 	$0c00 + $08 * 14 // n
-	.word 	$0c00 + $08 * 32 // 
-	.word 	$0c00 + $08 * 01 // a
-	.word 	$0c00 + $08 * 14 // n
-	.word 	$0c00 + $08 * 32 // 
-	.word 	$0c00 + $08 * 15 // o
-	.word 	$0c00 + $08 * 21 // u
-	.word 	$0c00 + $08 * 04 // d
-	.word 	$0c00 + $08 * 05 // e
-	.word 	$0c00 + $08 * 18 // r
-	.word 	$0c00 + $08 * 23 // w
-	.word 	$0c00 + $08 * 05 // e
-	.word 	$0c00 + $08 * 20 // t
-	.word 	$0c00 + $08 * 19 // s
-	.word 	$0c00 + $08 * 05 // e
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	
-	.word 	$0c00 + $08 * 0 //
-	.word 	$0c00 + $08 * 0 //
-	.word 	$0c00 + $08 * 0 //
-	.word 	$0c00 + $08 * 0 //
-	.word 	$0c00 + $08 * 0 //
-	.word 	$0c00 + $08 * 0 //
-	.word 	$0c00 + $08 * 0 //
-	.word 	$0c00 + $08 * 0 //
-
-.pc	=	$5200	"PlotText3"
-
-PlotText3:
-
-	.word 	$0c00 + $08 * 32 // 
-	.word 	$0c00 + $08 * 32 // 
-	.word 	$0c00 + $08 * 32 // 
-	.word 	$0c00 + $08 * 32 // 
-	.word 	$0c00 + $08 * 49 // 1
-	.word 	$0c00 + $08 * 54 // 6
-	.word 	$0c00 + $08 * 32 //  
-	.word 	$0c00 + $08 * 14 // n
-	.word 	$0c00 + $08 * 15 // o 
-	.word 	$0c00 + $08 * 22 // v
-	.word 	$0c00 + $08 * 05 // e
-	.word 	$0c00 + $08 * 13 // m
-	.word 	$0c00 + $08 * 02 // b
-	.word 	$0c00 + $08 * 05 // e 
-	.word 	$0c00 + $08 * 18 // r
-	.word 	$0c00 + $08 * 32 //  
-	.word 	$0c00 + $08 * 50 // 2
-	.word 	$0c00 + $08 * 48 // 0
-	.word 	$0c00 + $08 * 49 // 1
-	.word 	$0c00 + $08 * 51 // 3 
-	.word 	$0c00 + $08 * 32 //  
-	.word 	$0c00 + $08 * 32 //   
-	.word 	$0c00 + $08 * 32 //  
-	.word 	$0c00 + $08 * 32 // 
-	                            
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-
-	.word 	$0c00 + $08 * 32 // 
-	.word 	$0c00 + $08 * 03 // c
-	.word 	$0c00 + $08 * 54 // 6
-	.word 	$0c00 + $08 * 52 // 4
-	.word 	$0c00 + $08 * 44 // ,
-	.word 	$0c00 + $08 * 00 // 
-	.word 	$0c00 + $08 * 01 // a
-	.word 	$0c00 + $08 * 13 // m
-	.word 	$0c00 + $08 * 09 // i
-	.word 	$0c00 + $08 * 07 // g
-	.word 	$0c00 + $08 * 01 // a
-	.word 	$0c00 + $08 * 00 // 
-	.word 	$0c00 + $08 * 53 // 5
-	.word 	$0c00 + $08 * 48 // 0
-	.word 	$0c00 + $08 * 48 // 0
-	.word 	$0c00 + $08 * 00 // 
-	.word 	$0c00 + $08 * 38 // &
-	.word 	$0c00 + $08 * 00 // 
-	.word 	$0c00 + $08 * 39 // '
-	.word 	$0c00 + $08 * 23 // w
-	.word 	$0c00 + $08 * 09 // i
-	.word 	$0c00 + $08 * 12 // l
-	.word 	$0c00 + $08 * 04 // d
-	.word 	$0c00 + $08 * 39 // '
-
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	                            
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	.word 	$0c00 + $08 * 32 //
-	                            
-	.word 	$0c00 + $08 * 00 // 
-	.word 	$0c00 + $08 * 00 // 
-	.word 	$0c00 + $08 * 00 // 
-	.word 	$0c00 + $08 * 00 // 
-	.word 	$0c00 + $08 * 00 // 
-	.word 	$0c00 + $08 * 00 // 
-	.word 	$0c00 + $08 * 00 // 
-	.word 	$0c00 + $08 * 00 // 
-
-.pc	=	$5a00	"Plot Position Row 1"
-	//		 123456789012345678901234
-PlotPos1:
-
-	.word 	$0800 + 0 + 64 * 0
-	.word 	$0800 + 1 + 64 * 0
-	.word 	$0800 + 2 + 64 * 0
-	.word 	$0800 + 0 + 64 * 1
-	.word 	$0800 + 1 + 64 * 1
-	.word 	$0800 + 2 + 64 * 1
-	.word 	$0800 + 0 + 64 * 2
-	.word 	$0800 + 1 + 64 * 2
-	.word 	$0800 + 2 + 64 * 2
-	.word 	$0800 + 0 + 64 * 3
-	.word 	$0800 + 1 + 64 * 3
-	.word 	$0800 + 2 + 64 * 3
-	.word 	$0800 + 0 + 64 * 4
-	.word 	$0800 + 1 + 64 * 4
-	.word 	$0800 + 2 + 64 * 4
-	.word 	$0800 + 0 + 64 * 5
-	.word 	$0800 + 1 + 64 * 5
-	.word 	$0800 + 2 + 64 * 5
-	.word 	$0800 + 0 + 64 * 6
-	.word 	$0800 + 1 + 64 * 6
-	.word 	$0800 + 2 + 64 * 6
-	.word 	$0800 + 0 + 64 * 7
-	.word 	$0800 + 1 + 64 * 7
-	.word 	$0800 + 2 + 64 * 7
-
-	.word 	$0800 + 0 + 64 * 0
-	.word 	$0800 + 1 + 64 * 0
-	.word 	$0800 + 2 + 64 * 0
-	.word 	$0800 + 0 + 64 * 1
-	.word 	$0800 + 1 + 64 * 1
-	.word 	$0800 + 2 + 64 * 1
-	.word 	$0800 + 0 + 64 * 2
-	.word 	$0800 + 1 + 64 * 2
-	.word 	$0800 + 2 + 64 * 2
-	.word 	$0800 + 0 + 64 * 3
-	.word 	$0800 + 1 + 64 * 3
-	.word 	$0800 + 2 + 64 * 3
-	.word 	$0800 + 0 + 64 * 4
-	.word 	$0800 + 1 + 64 * 4
-	.word 	$0800 + 2 + 64 * 4
-	.word 	$0800 + 0 + 64 * 5
-	.word 	$0800 + 1 + 64 * 5
-	.word 	$0800 + 2 + 64 * 5
-	.word 	$0800 + 0 + 64 * 6
-	.word 	$0800 + 1 + 64 * 6
-	.word 	$0800 + 2 + 64 * 6
-	.word 	$0800 + 0 + 64 * 7
-	.word 	$0800 + 1 + 64 * 7
-	.word 	$0800 + 2 + 64 * 7
-
-	.word 	$0800 + 0 + 64 * 0
-	.word 	$0800 + 1 + 64 * 0
-	.word 	$0800 + 2 + 64 * 0
-	.word 	$0800 + 0 + 64 * 1
-	.word 	$0800 + 1 + 64 * 1
-	.word 	$0800 + 2 + 64 * 1
-	.word 	$0800 + 0 + 64 * 2
-	.word 	$0800 + 1 + 64 * 2
-	.word 	$0800 + 2 + 64 * 2
-	.word 	$0800 + 0 + 64 * 3
-	.word 	$0800 + 1 + 64 * 3
-	.word 	$0800 + 2 + 64 * 3
-	.word 	$0800 + 0 + 64 * 4
-	.word 	$0800 + 1 + 64 * 4
-	.word 	$0800 + 2 + 64 * 4
-	.word 	$0800 + 0 + 64 * 5
-	.word 	$0800 + 1 + 64 * 5
-	.word 	$0800 + 2 + 64 * 5
-	.word 	$0800 + 0 + 64 * 6
-	.word 	$0800 + 1 + 64 * 6
-	.word 	$0800 + 2 + 64 * 6
-	.word 	$0800 + 0 + 64 * 7
-	.word 	$0800 + 1 + 64 * 7
-	.word 	$0800 + 2 + 64 * 7
-
-	.word 	$0800 + 0 + 64 * 0
-	.word 	$0800 + 1 + 64 * 0
-	.word 	$0800 + 2 + 64 * 0
-	.word 	$0800 + 0 + 64 * 1
-	.word 	$0800 + 1 + 64 * 1
-	.word 	$0800 + 2 + 64 * 1
-	.word 	$0800 + 0 + 64 * 2
-	.word 	$0800 + 1 + 64 * 2
-	.word 	$0800 + 2 + 64 * 2
-	.word 	$0800 + 0 + 64 * 3
-	.word 	$0800 + 1 + 64 * 3
-	.word 	$0800 + 2 + 64 * 3
-	.word 	$0800 + 0 + 64 * 4
-	.word 	$0800 + 1 + 64 * 4
-	.word 	$0800 + 2 + 64 * 4
-	.word 	$0800 + 0 + 64 * 5
-	.word 	$0800 + 1 + 64 * 5
-	.word 	$0800 + 2 + 64 * 5
-	.word 	$0800 + 0 + 64 * 6
-	.word 	$0800 + 1 + 64 * 6
-	.word 	$0800 + 2 + 64 * 6
-	.word 	$0800 + 0 + 64 * 7
-	.word 	$0800 + 1 + 64 * 7
-	.word 	$0800 + 2 + 64 * 7
-
-	.word 	$0800 + 0 + 64 * 0
-	.word 	$0800 + 1 + 64 * 0
-	.word 	$0800 + 2 + 64 * 0
-	.word 	$0800 + 0 + 64 * 1
-	.word 	$0800 + 1 + 64 * 1
-	.word 	$0800 + 2 + 64 * 1
-	.word 	$0800 + 0 + 64 * 2
-	.word 	$0800 + 1 + 64 * 2
-	.word 	$0800 + 2 + 64 * 2
-	.word 	$0800 + 0 + 64 * 3
-	.word 	$0800 + 1 + 64 * 3
-	.word 	$0800 + 2 + 64 * 3
-	.word 	$0800 + 0 + 64 * 4
-	.word 	$0800 + 1 + 64 * 4
-	.word 	$0800 + 2 + 64 * 4
-	.word 	$0800 + 0 + 64 * 5
-	.word 	$0800 + 1 + 64 * 5
-	.word 	$0800 + 2 + 64 * 5
-	.word 	$0800 + 0 + 64 * 6
-	.word 	$0800 + 1 + 64 * 6
-	.word 	$0800 + 2 + 64 * 6
-	.word 	$0800 + 0 + 64 * 7
-	.word 	$0800 + 1 + 64 * 7
-	.word 	$0800 + 2 + 64 * 7
-	.word 	$0800 + 0 + 64 * 7
-	.word 	$0800 + 1 + 64 * 7
-	.word 	$0800 + 2 + 64 * 7
-	.word 	$0800 + 0 + 64 * 6
-	.word 	$0800 + 1 + 64 * 6
-	.word 	$0800 + 2 + 64 * 6
-	.word 	$0800 + 0 + 64 * 7
-	.word 	$0800 + 1 + 64 * 7
-
-//-----------------------------------------------------------
-
-.pc	=	$5b00	"Plot Position Row 2"
-	//		 123456789012345678901234
-PlotPos2:
-
-	.word 	$0a00 + 0 + 64 * 0
-	.word 	$0a00 + 1 + 64 * 0
-	.word 	$0a00 + 2 + 64 * 0
-	.word 	$0a00 + 0 + 64 * 1
-	.word 	$0a00 + 1 + 64 * 1
-	.word 	$0a00 + 2 + 64 * 1
-	.word 	$0a00 + 0 + 64 * 2
-	.word 	$0a00 + 1 + 64 * 2
-	.word 	$0a00 + 2 + 64 * 2
-	.word 	$0a00 + 0 + 64 * 3
-	.word 	$0a00 + 1 + 64 * 3
-	.word 	$0a00 + 2 + 64 * 3
-	.word 	$0a00 + 0 + 64 * 4
-	.word 	$0a00 + 1 + 64 * 4
-	.word 	$0a00 + 2 + 64 * 4
-	.word 	$0a00 + 0 + 64 * 5
-	.word 	$0a00 + 1 + 64 * 5
-	.word 	$0a00 + 2 + 64 * 5
-	.word 	$0a00 + 0 + 64 * 6
-	.word 	$0a00 + 1 + 64 * 6
-	.word 	$0a00 + 2 + 64 * 6
-	.word 	$0a00 + 0 + 64 * 7
-	.word 	$0a00 + 1 + 64 * 7
-	.word 	$0a00 + 2 + 64 * 7
-
-	.word 	$0a00 + 0 + 64 * 0
-	.word 	$0a00 + 1 + 64 * 0
-	.word 	$0a00 + 2 + 64 * 0
-	.word 	$0a00 + 0 + 64 * 1
-	.word 	$0a00 + 1 + 64 * 1
-	.word 	$0a00 + 2 + 64 * 1
-	.word 	$0a00 + 0 + 64 * 2
-	.word 	$0a00 + 1 + 64 * 2
-	.word 	$0a00 + 2 + 64 * 2
-	.word 	$0a00 + 0 + 64 * 3
-	.word 	$0a00 + 1 + 64 * 3
-	.word 	$0a00 + 2 + 64 * 3
-	.word 	$0a00 + 0 + 64 * 4
-	.word 	$0a00 + 1 + 64 * 4
-	.word 	$0a00 + 2 + 64 * 4
-	.word 	$0a00 + 0 + 64 * 5
-	.word 	$0a00 + 1 + 64 * 5
-	.word 	$0a00 + 2 + 64 * 5
-	.word 	$0a00 + 0 + 64 * 6
-	.word 	$0a00 + 1 + 64 * 6
-	.word 	$0a00 + 2 + 64 * 6
-	.word 	$0a00 + 0 + 64 * 7
-	.word 	$0a00 + 1 + 64 * 7
-	.word 	$0a00 + 2 + 64 * 7
-
-	.word 	$0a00 + 0 + 64 * 0
-	.word 	$0a00 + 1 + 64 * 0
-	.word 	$0a00 + 2 + 64 * 0
-	.word 	$0a00 + 0 + 64 * 1
-	.word 	$0a00 + 1 + 64 * 1
-	.word 	$0a00 + 2 + 64 * 1
-	.word 	$0a00 + 0 + 64 * 2
-	.word 	$0a00 + 1 + 64 * 2
-	.word 	$0a00 + 2 + 64 * 2
-	.word 	$0a00 + 0 + 64 * 3
-	.word 	$0a00 + 1 + 64 * 3
-	.word 	$0a00 + 2 + 64 * 3
-	.word 	$0a00 + 0 + 64 * 4
-	.word 	$0a00 + 1 + 64 * 4
-	.word 	$0a00 + 2 + 64 * 4
-	.word 	$0a00 + 0 + 64 * 5
-	.word 	$0a00 + 1 + 64 * 5
-	.word 	$0a00 + 2 + 64 * 5
-	.word 	$0a00 + 0 + 64 * 6
-	.word 	$0a00 + 1 + 64 * 6
-	.word 	$0a00 + 2 + 64 * 6
-	.word 	$0a00 + 0 + 64 * 7
-	.word 	$0a00 + 1 + 64 * 7
-	.word 	$0a00 + 2 + 64 * 7
-
-	.word 	$0a00 + 0 + 64 * 0
-	.word 	$0a00 + 1 + 64 * 0
-	.word 	$0a00 + 2 + 64 * 0
-	.word 	$0a00 + 0 + 64 * 1
-	.word 	$0a00 + 1 + 64 * 1
-	.word 	$0a00 + 2 + 64 * 1
-	.word 	$0a00 + 0 + 64 * 2
-	.word 	$0a00 + 1 + 64 * 2
-	.word 	$0a00 + 2 + 64 * 2
-	.word 	$0a00 + 0 + 64 * 3
-	.word 	$0a00 + 1 + 64 * 3
-	.word 	$0a00 + 2 + 64 * 3
-	.word 	$0a00 + 0 + 64 * 4
-	.word 	$0a00 + 1 + 64 * 4
-	.word 	$0a00 + 2 + 64 * 4
-	.word 	$0a00 + 0 + 64 * 5
-	.word 	$0a00 + 1 + 64 * 5
-	.word 	$0a00 + 2 + 64 * 5
-	.word 	$0a00 + 0 + 64 * 6
-	.word 	$0a00 + 1 + 64 * 6
-	.word 	$0a00 + 2 + 64 * 6
-	.word 	$0a00 + 0 + 64 * 7
-	.word 	$0a00 + 1 + 64 * 7
-	.word 	$0a00 + 2 + 64 * 7
-
-	.word 	$0a00 + 0 + 64 * 0
-	.word 	$0a00 + 1 + 64 * 0
-	.word 	$0a00 + 2 + 64 * 0
-	.word 	$0a00 + 0 + 64 * 1
-	.word 	$0a00 + 1 + 64 * 1
-	.word 	$0a00 + 2 + 64 * 1
-	.word 	$0a00 + 0 + 64 * 2
-	.word 	$0a00 + 1 + 64 * 2
-	.word 	$0a00 + 2 + 64 * 2
-	.word 	$0a00 + 0 + 64 * 3
-	.word 	$0a00 + 1 + 64 * 3
-	.word 	$0a00 + 2 + 64 * 3
-	.word 	$0a00 + 0 + 64 * 4
-	.word 	$0a00 + 1 + 64 * 4
-	.word 	$0a00 + 2 + 64 * 4
-	.word 	$0a00 + 0 + 64 * 5
-	.word 	$0a00 + 1 + 64 * 5
-	.word 	$0a00 + 2 + 64 * 5
-	.word 	$0a00 + 0 + 64 * 6
-	.word 	$0a00 + 1 + 64 * 6
-	.word 	$0a00 + 2 + 64 * 6
-	.word 	$0a00 + 0 + 64 * 7
-	.word 	$0a00 + 1 + 64 * 7
-	.word 	$0a00 + 2 + 64 * 7
-	.word 	$0a00 + 0 + 64 * 7
-	.word 	$0a00 + 1 + 64 * 7
-	.word 	$0a00 + 2 + 64 * 7
-	.word 	$0a00 + 0 + 64 * 6
-	.word 	$0a00 + 1 + 64 * 6
-	.word 	$0a00 + 2 + 64 * 6
-	.word 	$0a00 + 0 + 64 * 7
-	.word 	$0a00 + 1 + 64 * 7
-//-----------------------------------------------------------
-	.pc	=	$5c00	"Plot Position Row 3"
-	//		 123456789012345678901234
-PlotPos3:
-
-	.word 	$2000 + 0 + 64 * 0
-	.word 	$2000 + 1 + 64 * 0
-	.word 	$2000 + 2 + 64 * 0
-	.word 	$2000 + 0 + 64 * 1
-	.word 	$2000 + 1 + 64 * 1
-	.word 	$2000 + 2 + 64 * 1
-	.word 	$2000 + 0 + 64 * 2
-	.word 	$2000 + 1 + 64 * 2
-	.word 	$2000 + 2 + 64 * 2
-	.word 	$2000 + 0 + 64 * 3
-	.word 	$2000 + 1 + 64 * 3
-	.word 	$2000 + 2 + 64 * 3
-	.word 	$2000 + 0 + 64 * 4
-	.word 	$2000 + 1 + 64 * 4
-	.word 	$2000 + 2 + 64 * 4
-	.word 	$2000 + 0 + 64 * 5
-	.word 	$2000 + 1 + 64 * 5
-	.word 	$2000 + 2 + 64 * 5
-	.word 	$2000 + 0 + 64 * 6
-	.word 	$2000 + 1 + 64 * 6
-	.word 	$2000 + 2 + 64 * 6
-	.word 	$2000 + 0 + 64 * 7
-	.word 	$2000 + 1 + 64 * 7
-	.word 	$2000 + 2 + 64 * 7
-
-	.word 	$2000 + 0 + 64 * 0
-	.word 	$2000 + 1 + 64 * 0
-	.word 	$2000 + 2 + 64 * 0
-	.word 	$2000 + 0 + 64 * 1
-	.word 	$2000 + 1 + 64 * 1
-	.word 	$2000 + 2 + 64 * 1
-	.word 	$2000 + 0 + 64 * 2
-	.word 	$2000 + 1 + 64 * 2
-	.word 	$2000 + 2 + 64 * 2
-	.word 	$2000 + 0 + 64 * 3
-	.word 	$2000 + 1 + 64 * 3
-	.word 	$2000 + 2 + 64 * 3
-	.word 	$2000 + 0 + 64 * 4
-	.word 	$2000 + 1 + 64 * 4
-	.word 	$2000 + 2 + 64 * 4
-	.word 	$2000 + 0 + 64 * 5
-	.word 	$2000 + 1 + 64 * 5
-	.word 	$2000 + 2 + 64 * 5
-	.word 	$2000 + 0 + 64 * 6
-	.word 	$2000 + 1 + 64 * 6
-	.word 	$2000 + 2 + 64 * 6
-	.word 	$2000 + 0 + 64 * 7
-	.word 	$2000 + 1 + 64 * 7
-	.word 	$2000 + 2 + 64 * 7
-
-	.word 	$2000 + 0 + 64 * 0
-	.word 	$2000 + 1 + 64 * 0
-	.word 	$2000 + 2 + 64 * 0
-	.word 	$2000 + 0 + 64 * 1
-	.word 	$2000 + 1 + 64 * 1
-	.word 	$2000 + 2 + 64 * 1
-	.word 	$2000 + 0 + 64 * 2
-	.word 	$2000 + 1 + 64 * 2
-	.word 	$2000 + 2 + 64 * 2
-	.word 	$2000 + 0 + 64 * 3
-	.word 	$2000 + 1 + 64 * 3
-	.word 	$2000 + 2 + 64 * 3
-	.word 	$2000 + 0 + 64 * 4
-	.word 	$2000 + 1 + 64 * 4
-	.word 	$2000 + 2 + 64 * 4
-	.word 	$2000 + 0 + 64 * 5
-	.word 	$2000 + 1 + 64 * 5
-	.word 	$2000 + 2 + 64 * 5
-	.word 	$2000 + 0 + 64 * 6
-	.word 	$2000 + 1 + 64 * 6
-	.word 	$2000 + 2 + 64 * 6
-	.word 	$2000 + 0 + 64 * 7
-	.word 	$2000 + 1 + 64 * 7
-	.word 	$2000 + 2 + 64 * 7
-
-	.word 	$2000 + 0 + 64 * 0
-	.word 	$2000 + 1 + 64 * 0
-	.word 	$2000 + 2 + 64 * 0
-	.word 	$2000 + 0 + 64 * 1
-	.word 	$2000 + 1 + 64 * 1
-	.word 	$2000 + 2 + 64 * 1
-	.word 	$2000 + 0 + 64 * 2
-	.word 	$2000 + 1 + 64 * 2
-	.word 	$2000 + 2 + 64 * 2
-	.word 	$2000 + 0 + 64 * 3
-	.word 	$2000 + 1 + 64 * 3
-	.word 	$2000 + 2 + 64 * 3
-	.word 	$2000 + 0 + 64 * 4
-	.word 	$2000 + 1 + 64 * 4
-	.word 	$2000 + 2 + 64 * 4
-	.word 	$2000 + 0 + 64 * 5
-	.word 	$2000 + 1 + 64 * 5
-	.word 	$2000 + 2 + 64 * 5
-	.word 	$2000 + 0 + 64 * 6
-	.word 	$2000 + 1 + 64 * 6
-	.word 	$2000 + 2 + 64 * 6
-	.word 	$2000 + 0 + 64 * 7
-	.word 	$2000 + 1 + 64 * 7
-	.word 	$2000 + 2 + 64 * 7
-
-	.word 	$2000 + 0 + 64 * 0
-	.word 	$2000 + 1 + 64 * 0
-	.word 	$2000 + 2 + 64 * 0
-	.word 	$2000 + 0 + 64 * 1
-	.word 	$2000 + 1 + 64 * 1
-	.word 	$2000 + 2 + 64 * 1
-	.word 	$2000 + 0 + 64 * 2
-	.word 	$2000 + 1 + 64 * 2
-	.word 	$2000 + 2 + 64 * 2
-	.word 	$2000 + 0 + 64 * 3
-	.word 	$2000 + 1 + 64 * 3
-	.word 	$2000 + 2 + 64 * 3
-	.word 	$2000 + 0 + 64 * 4
-	.word 	$2000 + 1 + 64 * 4
-	.word 	$2000 + 2 + 64 * 4
-	.word 	$2000 + 0 + 64 * 5
-	.word 	$2000 + 1 + 64 * 5
-	.word 	$2000 + 2 + 64 * 5
-	.word 	$2000 + 0 + 64 * 6
-	.word 	$2000 + 1 + 64 * 6
-	.word 	$2000 + 2 + 64 * 6
-	.word 	$2000 + 0 + 64 * 7
-	.word 	$2000 + 1 + 64 * 7
-	.word 	$2000 + 2 + 64 * 7
-	.word 	$2000 + 0 + 64 * 7
-	.word 	$2000 + 1 + 64 * 7
-	.word 	$2000 + 2 + 64 * 7
-	.word 	$2000 + 0 + 64 * 6
-	.word 	$2000 + 1 + 64 * 6
-	.word 	$2000 + 2 + 64 * 6
-	.word 	$2000 + 0 + 64 * 7
-	.word 	$2000 + 1 + 64 * 7
-
-//-----------------------------------------------------------
-.pc		=	$5300
-AddChar:	// '/' = 47
-	.byte	%00000110
-	.byte	%00000110
-	.byte	%00000110
-	.byte	%00001100
-	.byte	%00001100
-	.byte	%00001100
-	.byte	%00011000
-	.byte	%00011000
-	.byte	%00110000
-	.byte	%00110000
-	.byte	%01100000
-	.byte	%01100000
-	.byte	%11000000
-	.byte	%11000000
-	.byte	%11000000
-	.byte	%00000000
-
-	// '.' = 46
-	.byte	%00000000
-	.byte	%00000000
-	.byte	%00000000
-	.byte	%00000000
-	.byte	%00000000
-	.byte	%00000000
-	.byte	%00000000
-	.byte	%00000000
-	.byte	%00000000
-	.byte	%00000000
-	.byte	%00000000
-	.byte	%00000000
-	.byte	%00000000
-	.byte	%00011000
-	.byte	%00011000
-	.byte	%00000000
-
-	// '&' = 38
-	.byte	%00000000
-	.byte	%01111000
-	.byte	%11111100
-	.byte	%11001100
-	.byte	%11001100
-	.byte	%11111100
-	.byte	%01111000
-	.byte	%01110000
-	.byte	%11110000
-	.byte	%11001110
-	.byte	%11001110
-	.byte	%11001100
-	.byte	%11011100
-	.byte	%11111110
-	.byte	%01110110
-	.byte	%00000000
-	.byte	%00000000
