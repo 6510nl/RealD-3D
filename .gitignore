@@ -1,3 +1,3 @@
 
-*.prg
-*.sym
+sources/*.prg
+sources/*.sym
