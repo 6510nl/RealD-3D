@@ -314,7 +314,7 @@ joyplay:
 	beq but
 	rts
 but: 
-	lda #$60+5
+	lda #$60-5
 	sta offx
 	lda #$80
 	sta offy
@@ -346,7 +346,7 @@ j2l:	.byte 0
 j2r:	.byte 0
 j2b:	.byte 0
 
-offx:	.byte $60+5
+offx:	.byte $60-5
 offy:	.byte $80+0
 
 //-----------------------------------------------------------
