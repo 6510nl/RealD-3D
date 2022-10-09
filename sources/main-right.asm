@@ -314,9 +314,9 @@ joyplay:
 	beq but
 	rts
 but: 
-	lda #$60+4
+	lda #$60+5
 	sta offx
-	lda #$80+4
+	lda #$80
 	sta offy
 	rts
 up:
@@ -346,8 +346,8 @@ j2l:	.byte 0
 j2r:	.byte 0
 j2b:	.byte 0
 
-offx:	.byte $60+4
-offy:	.byte $80+4
+offx:	.byte $60+5
+offy:	.byte $80+0
 
 //-----------------------------------------------------------
 .pc	=	$3000	"Keep In Mind table"
