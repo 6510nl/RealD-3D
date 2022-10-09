@@ -49,7 +49,7 @@
 	inx
 	bne !-
 
-	lda #82 // R
+	lda #114 // R
 	sta $0400
 
 .var paal1 = 6
