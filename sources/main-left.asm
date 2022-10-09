@@ -267,10 +267,24 @@ irq:
 joyplay:
 	lda #$80
 	sta $07f8
+	sta $07f9
+	sta $07fa
+	sta $07fb
+	
 	lda spr1
 	sta $d000
+	sta $d002
+	sta $d004
+	sta $d006
 	lda spr1+1
 	sta $d001
+	lda spr2+1
+	sta $d003
+	lda spr3+1
+	sta $d005
+	lda spr34+1
+	sta $d007
+	
 
 	ldx s1x
 	ldy s1y
@@ -282,8 +296,18 @@ joyplay:
 	clc
 	adc offy
 	sta spr1+1
+	clc
+	adc offy
+	sta spr2+1
+	clc
+	adc offy
+	sta spr3+1
+	clc
+	adc offy
+	sta spr4+1
+	
 	inc s1x
-	inc s1y
+//	inc s1y
 
 	lda $dc01
 	lsr
@@ -356,7 +380,11 @@ offy:	.byte $80
 .pc	=	$3000	"Keep In Mind table"
 
 spr1:	.byte $00, $00
-s1x:	.byte $00
+spr2:	.byte $00, $10
+spr3:	.byte $00, $20
+spr4:	.byte $00, $40
+
+s1x:	.byte $0a
 s1y:	.byte $40
 
 //-----------------------------------------------------------
