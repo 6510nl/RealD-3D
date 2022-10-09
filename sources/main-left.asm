@@ -49,6 +49,9 @@
 	inx
 	bne !-
 
+	lda #76 // L
+	sta $0400
+
 .var paal1 = 6
 .var paal2 = 10
 .var paal3 = 15
