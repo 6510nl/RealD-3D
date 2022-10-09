@@ -49,7 +49,7 @@
 	inx
 	bne !-
 
-.var paal1 = 5
+.var paal1 = 6
 .var paal2 = 10
 .var paal3 = 15
 

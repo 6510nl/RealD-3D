@@ -49,9 +49,9 @@
 	inx
 	bne !-
 
-.var paal1 = 4
+.var paal1 = 5
 .var paal2 = 10
-.var paal3 = 16
+.var paal3 = 14
 
 	lda #$a0
 	sta $0400+paal1+(40*00)
