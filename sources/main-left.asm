@@ -215,20 +215,14 @@ irq:
 	tya        	//
 	pha        	//	store register Y in stack
 
-	ldx #$07
-!:	dex
-	bne !-
-	nop
-	nop
-	nop 
-!:	lda $d012
-	cmp #$f2
-	bne	!-
-
-
 !:	lda $d012
 	cmp #$fa
 	bne	!-
+	nop
+	nop
+	nop 
+	lda #$00
+	sta $d011
 
 	ldx #$00
 !:	inx
