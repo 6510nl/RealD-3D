@@ -50,8 +50,8 @@
 	bne !-
 
 .var paal1 = 4
-.var paal2 = 12
-.var paal3 = 20
+.var paal2 = 10
+.var paal3 = 16
 
 	lda #$a0
 	sta $0400+paal1+(40*00)
@@ -386,7 +386,7 @@ s1y:	.byte $40
 
 SinusTable:
 
-.var diameter = 32
+.var diameter = 40
 
 	.fill 256, diameter * sin(toRadians(i*360/256)) // Generates a sine curve
 
