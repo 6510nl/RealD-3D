@@ -49,7 +49,7 @@
 	inx
 	bne !-
 
-	lda #$4c-32 // L
+	lda #128+140 // L
 	sta $07e7
 
 .var paal1 = 6
