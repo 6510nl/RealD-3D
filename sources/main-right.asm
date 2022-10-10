@@ -49,9 +49,12 @@
 	inx
 	bne !-
 
-.var paal1 = 4
-.var paal2 = 12
-.var paal3 = 20
+	lda #128+146 // R
+	sta $07e7
+
+.var paal1 = 6
+.var paal2 = 10
+.var paal3 = 14
 
 	lda #$a0
 	sta $0400+paal1+(40*00)
@@ -264,10 +267,24 @@ irq:
 joyplay:
 	lda #$80
 	sta $07f8
+	sta $07f9
+	sta $07fa
+	sta $07fb
+	
 	lda spr1
 	sta $d000
+	sta $d002
+	sta $d004
+	sta $d006
 	lda spr1+1
 	sta $d001
+	lda spr2+1
+	sta $d003
+	lda spr3+1
+	sta $d005
+	lda spr34+1
+	sta $d007
+	
 
 	ldx s1x
 	ldy s1y
@@ -279,8 +296,18 @@ joyplay:
 	clc
 	adc offy
 	sta spr1+1
+	clc
+	adc offy
+	sta spr2+1
+	clc
+	adc offy
+	sta spr3+1
+	clc
+	adc offy
+	sta spr4+1
+	
 	inc s1x
-	inc s1y
+//	inc s1y
 
 	lda $dc01
 	lsr
@@ -314,9 +341,9 @@ joyplay:
 	beq but
 	rts
 but: 
-	lda #$60+4
+	lda #$60
 	sta offx
-	lda #$80+4
+	lda #$80
 	sta offy
 	rts
 up:
@@ -346,14 +373,18 @@ j2l:	.byte 0
 j2r:	.byte 0
 j2b:	.byte 0
 
-offx:	.byte $60+4
-offy:	.byte $80+4
+offx:	.byte $60
+offy:	.byte $80
 
 //-----------------------------------------------------------
 .pc	=	$3000	"Keep In Mind table"
 
 spr1:	.byte $00, $00
-s1x:	.byte $00
+spr2:	.byte $00, $10
+spr3:	.byte $00, $20
+spr4:	.byte $00, $40
+
+s1x:	.byte $0a
 s1y:	.byte $40
 
 //-----------------------------------------------------------
@@ -386,7 +417,7 @@ s1y:	.byte $40
 
 SinusTable:
 
-.var diameter = 32
+.var diameter = 40
 
 	.fill 256, diameter * sin(toRadians(i*360/256)) // Generates a sine curve
 
