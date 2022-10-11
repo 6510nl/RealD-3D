@@ -18,7 +18,8 @@ Exploring the potential of a 3D demo running on a set of stock C64 machines comb
 
 # Optionals
 
-* [1541U2](https://en.wikipedia.org/wiki/1541_Ultimate) combined with [USB2LAN (Asix AX88772/-A/-B)]() adapters
+* [1541U2](https://en.wikipedia.org/wiki/1541_Ultimate) combined with ethernet adapters
+* [USB2LAN (Asix AX88772/-A/-B)]() adapters
 
 # Point of sales
 
