@@ -1,6 +1,8 @@
 # RealD-3D
 RealD-3D on the C64
 
+The [diary](./diary/README.md) of our journey.
+
 # RealD-3D
 
 Exploring the potential of a 3D demo running on a set of stock C64 machines combined with RealD 3D glasses.
