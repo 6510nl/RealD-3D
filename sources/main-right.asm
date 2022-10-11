@@ -309,7 +309,7 @@ joyplay:
 	inc s1x
 //	inc s1y
 
-	lda $dc01
+	lda $dc00
 	lsr
 	ror j2u
 	lsr
