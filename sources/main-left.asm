@@ -282,7 +282,7 @@ joyplay:
 	sta $d003
 	lda spr3+1
 	sta $d005
-	lda spr34+1
+	lda spr4+1
 	sta $d007
 	
 
