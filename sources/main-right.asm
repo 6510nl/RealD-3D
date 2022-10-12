@@ -320,7 +320,7 @@ xloop:
 
 	inc slowj
 	lda slowj
-	cmp #$04
+	cmp #$02	
 	bne slowjump
 	lda #$00
 	sta slowj
