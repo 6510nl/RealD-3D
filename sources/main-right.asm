@@ -52,9 +52,9 @@
 	lda #128+146 // R
 	sta $07e7
 
-.var paal1 = 6
-.var paal2 = 10
-.var paal3 = 14
+.var paal1 = 1
+.var paal2 = 4
+.var paal3 = 7
 
 	lda #$a0
 	sta $0400+paal1+(40*00)
@@ -135,6 +135,89 @@
 	sta $0400+paal3+(40*23)
 	sta $0400+paal3+(40*24)
 	
+	lda #$0f
+	sta $d800+paal1+(40*00)
+	sta $d800+paal1+(40*01)
+	sta $d800+paal1+(40*02)
+	sta $d800+paal1+(40*03)
+	sta $d800+paal1+(40*04)
+	sta $d800+paal1+(40*05)
+	sta $d800+paal1+(40*06)
+	sta $d800+paal1+(40*07)
+	sta $d800+paal1+(40*08)
+	sta $d800+paal1+(40*09)
+	sta $d800+paal1+(40*10)
+	sta $d800+paal1+(40*11)
+	sta $d800+paal1+(40*12)
+	sta $d800+paal1+(40*13)
+	sta $d800+paal1+(40*14)
+	sta $d800+paal1+(40*15)
+	sta $d800+paal1+(40*16)
+	sta $d800+paal1+(40*17)
+	sta $d800+paal1+(40*18)
+	sta $d800+paal1+(40*19)
+	sta $d800+paal1+(40*20)
+	sta $d800+paal1+(40*20)
+	sta $d800+paal1+(40*21)
+	sta $d800+paal1+(40*22)
+	sta $d800+paal1+(40*23)
+	sta $d800+paal1+(40*24)
+
+	lda #$05
+	sta $d800+paal2+(40*00)
+	sta $d800+paal2+(40*01)
+	sta $d800+paal2+(40*02)
+	sta $d800+paal2+(40*03)
+	sta $d800+paal2+(40*04)
+	sta $d800+paal2+(40*05)
+	sta $d800+paal2+(40*06)
+	sta $d800+paal2+(40*07)
+	sta $d800+paal2+(40*08)
+	sta $d800+paal2+(40*09)
+	sta $d800+paal2+(40*10)
+	sta $d800+paal2+(40*11)
+	sta $d800+paal2+(40*12)
+	sta $d800+paal2+(40*13)
+	sta $d800+paal2+(40*14)
+	sta $d800+paal2+(40*15)
+	sta $d800+paal2+(40*16)
+	sta $d800+paal2+(40*17)
+	sta $d800+paal2+(40*18)
+	sta $d800+paal2+(40*19)
+	sta $d800+paal2+(40*20)
+	sta $d800+paal2+(40*20)
+	sta $d800+paal2+(40*21)
+	sta $d800+paal2+(40*22)
+	sta $d800+paal2+(40*23)
+	sta $d800+paal2+(40*24)
+
+	lda #$0f
+	sta $d800+paal3+(40*00)
+	sta $d800+paal3+(40*01)
+	sta $d800+paal3+(40*02)
+	sta $d800+paal3+(40*03)
+	sta $d800+paal3+(40*04)
+	sta $d800+paal3+(40*05)
+	sta $d800+paal3+(40*06)
+	sta $d800+paal3+(40*07)
+	sta $d800+paal3+(40*08)
+	sta $d800+paal3+(40*09)
+	sta $d800+paal3+(40*10)
+	sta $d800+paal3+(40*11)
+	sta $d800+paal3+(40*12)
+	sta $d800+paal3+(40*13)
+	sta $d800+paal3+(40*14)
+	sta $d800+paal3+(40*15)
+	sta $d800+paal3+(40*16)
+	sta $d800+paal3+(40*17)
+	sta $d800+paal3+(40*18)
+	sta $d800+paal3+(40*19)
+	sta $d800+paal3+(40*20)
+	sta $d800+paal3+(40*20)
+	sta $d800+paal3+(40*21)
+	sta $d800+paal3+(40*22)
+	sta $d800+paal3+(40*23)
+	sta $d800+paal3+(40*24)
 	
 // Enable Sprites
 	lda #$00
@@ -314,16 +397,16 @@ xloop:
 	sta spr3+1
 	sta spr4+1
 	
-//	inc s1x
+		inc s1x
 //	inc s1y
 //	inc s1y
 
-	inc slowj
-	lda slowj
-	cmp #$02	
-	bne slowjump
-	lda #$00
-	sta slowj
+//	inc slowj
+//	lda slowj
+//	cmp #$02	
+//	bne slowjump
+//	lda #$00
+//	sta slowj
 
 	lda $dc00
 	cmp #$7e
