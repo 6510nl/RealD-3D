@@ -325,7 +325,7 @@ xloop:
 	lda #$00
 	sta slowj
 
-	lda $dc00
+	lda $dc01
 	cmp #$7e
 	beq up
 	cmp #$76
