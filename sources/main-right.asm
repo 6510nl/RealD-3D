@@ -145,8 +145,11 @@
 	sta $d015	//  Enable sprites
 	lda #$01	//	Select colornumber
 	sta $d027	//	Sprite 0 color
+	lda #$02	//	Select colornumber
 	sta $d028	//	Sprite 1 color
+	lda #$03	//	Select colornumber
 	sta $d029	//	Sprite 2 color
+	lda #$04	//	Select colornumber
 	sta $d02a	//	Sprite 3 color
 	sta $d02b	//	Sprite 4 color
 	sta $d02c	//	Sprite 5 color
@@ -273,8 +276,11 @@ joyplay:
 	
 	lda spr1
 	sta $d000
+	lda spr2
 	sta $d002
+	lda spr3
 	sta $d004
+	lda spr4
 	sta $d006
 	lda spr1+1
 	sta $d001
@@ -285,62 +291,63 @@ joyplay:
 	lda spr4+1
 	sta $d007
 	
-
 	ldx s1x
-	ldy s1y
+xloop:	
 	lda SinusTable,x
 	clc
 	adc offx
 	sta spr1
+	sta spr3
+	clc
+	adc #30
+	sta spr2
+	sta spr4
+
+	ldy s1y
 	lda SinusTable,y
 	clc
 	adc offy
 	sta spr1+1
-	clc
-	adc offy
 	sta spr2+1
 	clc
-	adc offy
+	adc #27
 	sta spr3+1
-	clc
-	adc offy
 	sta spr4+1
 	
 	inc s1x
-//	inc s1y
+	inc s1y
+	inc s1y
+
+	inc slowj
+	lda slowj
+	cmp #$04
+	bne slowjump
+	lda #$00
+	sta slowj
 
 	lda $dc00
-	lsr
-	ror j2u
-	lsr
-	ror j2d
-	lsr
-	ror j2l
-	lsr
-	ror j2r
-	lsr
-	ror j2b
-
-.var j2delay = $00
-
-	lda j2u
-	cmp #j2delay
+	cmp #$7e
 	beq up 
-	lda j2d
-	cmp #j2delay
-	beq down 
-	lda j2l
-	cmp #j2delay
-	beq left
-	lda j2r
-	cmp #j2delay
+	cmp #$76
+	beq rightUp
+	cmp #$77
 	beq right
-
-	lda $dc01
-	and #$10
-	beq but
+	cmp #$75
+	beq rightDown
+	cmp #$7d
+	beq down 
+	cmp #$79
+	beq leftDown
+	cmp #$7b
+	beq left
+	cmp #$7a
+	beq leftUp
+	cmp #$6f
+	beq button
+slowjump:
 	rts
-but: 
+
+button: 
 	lda #$60
 	sta offx
 	lda #$80
@@ -348,34 +355,36 @@ but:
 	rts
 up:
 	dec offy
-	lda offy
-	sta $0401
 	rts
-down:
-	inc offy
-	lda offy
-	sta $0401+80
-	rts
-left:
-	dec offx
-	lda offx
-	sta $0400+40
+rightUp:
+	dec offy
+	inc offx
 	rts
 right:
 	inc offx
-	lda offx
-	sta $0402+40
 	rts
-
-j2u:	.byte 0
-j2d:	.byte 0
-j2l:	.byte 0
-j2r:	.byte 0
-j2b:	.byte 0
+rightDown:
+	inc offy
+	inc offx
+	rts
+down:
+	inc offy
+	rts
+leftDown:
+	inc offy
+	dec offx
+	rts
+left:
+	dec offx
+	rts
+leftUp:
+	dec offy
+	dec offx
+	rts
 
 offx:	.byte $60
 offy:	.byte $80
-
+slowj:	.byte $00
 //-----------------------------------------------------------
 .pc	=	$3000	"Keep In Mind table"
 
@@ -384,8 +393,8 @@ spr2:	.byte $00, $10
 spr3:	.byte $00, $20
 spr4:	.byte $00, $40
 
-s1x:	.byte $0a
-s1y:	.byte $40
+s1x:	.byte $00
+s1y:	.byte $80
 
 //-----------------------------------------------------------
 
