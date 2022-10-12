@@ -296,18 +296,11 @@ xloop:
 	lda SinusTable,x
 	clc
 	adc offx
-	sta spr1,y
-	txa
-	clc
-	adc #$8
-	tax
-	iny
-	iny
-	cpy #4*2
-	bne xloop
-
-	sta spr2
+	sta spr1
 	sta spr3
+	clc
+	adc #30
+	sta spr2
 	sta spr4
 
 	ldy s1y
@@ -316,10 +309,13 @@ xloop:
 	adc offy
 	sta spr1+1
 	sta spr2+1
+	clc
+	adc #27
 	sta spr3+1
 	sta spr4+1
 
 	inc s1x
+	inc s1y
 	inc s1y
 
 	inc slowj
@@ -397,8 +393,8 @@ spr2:	.byte $00, $10
 spr3:	.byte $00, $20
 spr4:	.byte $00, $40
 
-s1x:	.byte $0a
-s1y:	.byte $40
+s1x:	.byte $00
+s1y:	.byte $80
 
 //-----------------------------------------------------------
 
