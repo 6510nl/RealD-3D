@@ -314,9 +314,9 @@ xloop:
 	sta spr3+1
 	sta spr4+1
 
-	inc s1x
-	inc s1y
-	inc s1y
+//	inc s1x
+//	inc s1y
+//	inc s1y
 
 	inc slowj
 	lda slowj
