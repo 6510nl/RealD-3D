@@ -52,9 +52,9 @@
 	lda #128+146 // R
 	sta $07e7
 
-.var paal1 = 1
-.var paal2 = 4
-.var paal3 = 7
+.var paal1 = 5-1
+.var paal2 = 10
+.var paal3 = 15-1
 
 	lda #$a0
 	sta $0400+paal1+(40*00)
@@ -465,7 +465,7 @@ leftUp:
 	dec offx
 	rts
 
-offx:	.byte $60
+offx:	.byte $68
 offy:	.byte $80
 slowj:	.byte $00
 //-----------------------------------------------------------

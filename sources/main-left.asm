@@ -52,9 +52,9 @@
 	lda #128+140 // L
 	sta $07e7
 
-.var paal1 = 2
-.var paal2 = 4
-.var paal3 = 6
+.var paal1 = 5
+.var paal2 = 10
+.var paal3 = 15
 
 	lda #$a0
 	sta $0400+paal1+(40*00)
